@@ -1,0 +1,2084 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qaqajon AI — O'zbek tilidagi ilk aqlli murabbiy</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --orange: #ff6b00;
+        --orange-light: #ff8c33;
+        --blue: #1a3a8f;
+        --blue-dark: #0f2260;
+        --teal: #00c6b3;
+        --teal-light: #4dd9cd;
+        --bg: #f8f7f2;
+        --dark: #111827;
+        --card-bg: #ffffff;
+        --text: #333333;
+        --muted: #777777;
+        --purple: #7c3aed;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Nunito", sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 5%;
+        background: rgba(248, 247, 242, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .logo {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        color: var(--blue);
+      }
+      .logo span {
+        color: var(--orange);
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 32px;
+      }
+      nav ul a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: color 0.2s;
+      }
+      nav ul a:hover {
+        color: var(--orange);
+      }
+
+      .nav-cta {
+        background: var(--orange);
+        color: white !important;
+        padding: 10px 22px;
+        border-radius: 30px;
+        font-weight: 700 !important;
+        transition: background 0.2s, transform 0.2s !important;
+      }
+      .nav-cta:hover {
+        background: var(--orange-light) !important;
+        transform: translateY(-1px);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 100px 5% 60px;
+        background: linear-gradient(135deg, #f8f7f2 0%, #eef2ff 100%);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -200px;
+        right: -200px;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 107, 0, 0.08) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: -150px;
+        left: -150px;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 198, 179, 0.1) 0%,
+          transparent 70%
+        );
+        border-radius: 50%;
+      }
+
+      .hero-inner {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-text {
+        flex: 1;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 107, 0, 0.1);
+        color: var(--orange);
+        border: 1px solid rgba(255, 107, 0, 0.3);
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-bottom: 24px;
+        animation: fadeInDown 0.6s ease;
+      }
+
+      /* hero-badge image used instead of emoji */
+
+      h1 {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(2rem, 4.5vw, 3.6rem);
+        font-weight: 800;
+        line-height: 1.1;
+        color: var(--dark);
+        margin-bottom: 20px;
+        animation: fadeInDown 0.7s ease;
+      }
+      h1 .orange {
+        color: var(--orange);
+      }
+      h1 .teal {
+        color: var(--teal);
+      }
+
+      .hero-desc {
+        font-size: 1.1rem;
+        color: var(--muted);
+        line-height: 1.7;
+        margin-bottom: 36px;
+        max-width: 520px;
+        animation: fadeInDown 0.8s ease;
+      }
+
+      .hero-btns {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        animation: fadeInDown 0.9s ease;
+      }
+
+      .btn-primary {
+        background: var(--orange);
+        color: white;
+        padding: 15px 32px;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: all 0.25s;
+        box-shadow: 0 6px 24px rgba(255, 107, 0, 0.35);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(255, 107, 0, 0.45);
+      }
+
+      .btn-secondary {
+        background: white;
+        color: var(--blue);
+        padding: 15px 32px;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 700;
+        text-decoration: none;
+        border: 2px solid var(--blue);
+        transition: all 0.25s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-secondary:hover {
+        background: var(--blue);
+        color: white;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 48px;
+        animation: fadeInDown 1s ease;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--orange);
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        color: var(--muted);
+        font-weight: 600;
+      }
+
+      .hero-visual {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        animation: floatUp 1s ease;
+      }
+
+      .phone-mockup {
+        width: 260px;
+        height: 520px;
+        background: var(--dark);
+        border-radius: 40px;
+        padding: 16px;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+        position: relative;
+        z-index: 2;
+      }
+      .phone-screen {
+        background: linear-gradient(160deg, #1a3a8f 0%, #0f2260 100%);
+        border-radius: 28px;
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 24px 20px;
+        gap: 14px;
+      }
+      .phone-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .phone-avatar {
+        width: 40px;
+        height: 40px;
+        background: var(--orange);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+      }
+      .phone-title {
+        color: white;
+        font-weight: 700;
+        font-size: 0.85rem;
+      }
+      .phone-sub {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.7rem;
+      }
+
+      .chat-bubble {
+        padding: 12px 16px;
+        border-radius: 16px;
+        font-size: 0.78rem;
+        line-height: 1.5;
+        max-width: 90%;
+      }
+      .chat-ai {
+        background: rgba(255, 255, 255, 0.12);
+        color: white;
+        border-radius: 4px 16px 16px 16px;
+        align-self: flex-start;
+      }
+      .chat-user {
+        background: var(--orange);
+        color: white;
+        border-radius: 16px 4px 16px 16px;
+        align-self: flex-end;
+      }
+
+      .score-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        padding: 14px;
+        margin-top: auto;
+      }
+      .score-label {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.7rem;
+        margin-bottom: 8px;
+      }
+      .score-bar-wrap {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        height: 8px;
+        overflow: hidden;
+      }
+      .score-bar {
+        background: var(--teal);
+        height: 100%;
+        width: 0;
+        border-radius: 8px;
+        animation: growBar 1.5s 1s ease forwards;
+      }
+
+      @keyframes growBar {
+        to {
+          width: 78%;
+        }
+      }
+
+      .floating-card {
+        position: absolute;
+        background: white;
+        border-radius: 16px;
+        padding: 12px 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .fc1 {
+        top: 30px;
+        right: -20px;
+        color: var(--teal);
+      }
+      .fc2 {
+        bottom: 60px;
+        left: -30px;
+        color: var(--orange);
+      }
+      .fc-icon {
+        font-size: 1.4rem;
+      }
+
+      /* SECTIONS COMMON */
+      section {
+        padding: 90px 5%;
+      }
+      .section-tag {
+        display: inline-block;
+        background: rgba(255, 107, 0, 0.1);
+        color: var(--orange);
+        border: 1px solid rgba(255, 107, 0, 0.25);
+        padding: 6px 16px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        margin-bottom: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .section-title {
+        font-family: "Poppins", sans-serif;
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 14px;
+        line-height: 1.15;
+      }
+      .section-title .orange {
+        color: var(--orange);
+      }
+      .section-title .teal {
+        color: var(--teal);
+      }
+      .section-desc {
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        max-width: 580px;
+        margin-bottom: 50px;
+      }
+      .max-w {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* MUAMMO */
+      #muammo {
+        background: white;
+      }
+      .problem-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+      }
+      .big-stat {
+        background: linear-gradient(135deg, #fff3e8 0%, #ffe8d0 100%);
+        border-radius: 28px;
+        padding: 48px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .big-stat::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255, 107, 0, 0.08);
+        border-radius: 50%;
+      }
+      .big-percent {
+        font-family: "Poppins", sans-serif;
+        font-size: 5rem;
+        font-weight: 900;
+        color: var(--orange);
+        line-height: 1;
+      }
+      .big-percent-sub {
+        font-size: 1rem;
+        color: var(--muted);
+        font-weight: 600;
+        margin-top: 8px;
+      }
+
+      .problem-items {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 36px;
+      }
+      .problem-item {
+        background: white;
+        border-radius: 16px;
+        padding: 20px 24px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        border: 1.5px solid rgba(0, 0, 0, 0.06);
+        transition: border-color 0.2s, transform 0.2s;
+      }
+      .problem-item:hover {
+        border-color: var(--orange);
+        transform: translateX(4px);
+      }
+      .problem-icon {
+        font-size: 1.8rem;
+        flex-shrink: 0;
+      }
+      .problem-text h4 {
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 4px;
+      }
+      .problem-text p {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .global-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-top: 24px;
+      }
+      .gstat {
+        background: var(--dark);
+        color: white;
+        border-radius: 16px;
+        padding: 20px;
+        text-align: center;
+      }
+      .gstat-num {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: #ffd700;
+      }
+      .gstat-label {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 4px;
+      }
+
+      /* YECHIM */
+      #yechim {
+        background: linear-gradient(135deg, #eef2ff 0%, #f0fdf4 100%);
+      }
+      .solution-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+      .feature-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .feature-card {
+        background: white;
+        border-radius: 20px;
+        padding: 24px;
+        display: flex;
+        gap: 18px;
+        align-items: flex-start;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        transition: transform 0.25s, box-shadow 0.25s;
+      }
+      .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      }
+
+      .feat-icon-wrap {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        flex-shrink: 0;
+      }
+      .feat-orange {
+        background: rgba(255, 107, 0, 0.12);
+      }
+      .feat-teal {
+        background: rgba(0, 198, 179, 0.12);
+      }
+      .feat-blue {
+        background: rgba(26, 58, 143, 0.1);
+      }
+
+      .feat-text h3 {
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 6px;
+        font-size: 1.05rem;
+      }
+      .feat-text p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .app-preview {
+        background: var(--dark);
+        border-radius: 32px;
+        padding: 30px;
+        position: relative;
+        overflow: hidden;
+      }
+      .app-preview::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(26, 58, 143, 0.5) 0%,
+          rgba(0, 198, 179, 0.15) 100%
+        );
+      }
+      .app-preview-inner {
+        position: relative;
+        z-index: 1;
+      }
+      .app-label {
+        background: var(--teal);
+        color: white;
+        padding: 8px 18px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+      .lesson-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .lesson-card {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        padding: 16px 12px;
+        text-align: center;
+        cursor: pointer;
+        transition: background 0.2s;
+        border: 1.5px solid rgba(255, 255, 255, 0.05);
+      }
+      .lesson-card:hover {
+        background: rgba(255, 255, 255, 0.18);
+      }
+
+      /* APP SCREENSHOTS */
+      .app-screenshots {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .app-shot {
+        flex: 1;
+        aspect-ratio: 9/16;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border: 2px dashed rgba(255, 255, 255, 0.15);
+        overflow: hidden;
+        transition: border-color 0.2s, background 0.2s;
+        min-height: 100px;
+      }
+      .app-shot:hover {
+        border-color: rgba(0, 198, 179, 0.5);
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .app-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 14px;
+      }
+      .lesson-emoji {
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+      }
+      .lesson-name {
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+
+      /* BOZOR */
+      #bozor {
+        background: white;
+      }
+      .market-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+      .circles-visual {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        height: 380px;
+      }
+      .circle-outer {
+        width: 340px;
+        height: 340px;
+        border: 3px solid rgba(255, 107, 0, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        background: rgba(255, 107, 0, 0.03);
+      }
+      .circle-mid {
+        width: 240px;
+        height: 240px;
+        background: rgba(26, 58, 143, 0.08);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+      }
+      .circle-inner {
+        width: 130px;
+        height: 130px;
+        background: var(--orange);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        box-shadow: 0 10px 40px rgba(255, 107, 0, 0.4);
+      }
+      .circle-text {
+        text-align: center;
+        color: white;
+      }
+      .circle-text .cnum {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+        line-height: 1;
+      }
+      .circle-text .csub {
+        font-size: 0.6rem;
+        opacity: 0.85;
+      }
+
+      .outer-label {
+        position: absolute;
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        color: var(--orange);
+        top: 10px;
+        font-size: 2rem;
+      }
+      .mid-label {
+        position: absolute;
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        color: var(--blue);
+        top: 65px;
+        font-size: 1.4rem;
+      }
+
+      .market-items {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+      .market-item {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      .market-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 5px;
+      }
+      .market-item h4 {
+        font-weight: 800;
+        color: var(--dark);
+        margin-bottom: 4px;
+      }
+      .market-item p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.5;
+      }
+
+      .market-highlight {
+        background: var(--dark);
+        border-radius: 20px;
+        padding: 24px 28px;
+        color: white;
+        margin-top: 32px;
+        font-size: 0.95rem;
+        line-height: 1.6;
+      }
+      .market-highlight strong {
+        color: var(--teal);
+      }
+
+      /* BIZNES MODEL */
+      #biznes {
+        background: linear-gradient(135deg, #0f2260 0%, #1a3a8f 100%);
+      }
+      #biznes .section-tag {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--teal-light);
+        border-color: rgba(0, 198, 179, 0.3);
+      }
+      #biznes .section-title {
+        color: white;
+      }
+      #biznes .section-desc {
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .mrr-flow {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        padding: 36px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+      .flow-item {
+        text-align: center;
+      }
+      .flow-num {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: white;
+      }
+      .flow-num.blue-col {
+        color: var(--teal-light);
+      }
+      .flow-label {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 4px;
+      }
+      .flow-op {
+        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.3);
+        font-weight: 300;
+        padding: 0 8px;
+      }
+      .flow-result {
+        background: var(--orange);
+        border-radius: 18px;
+        padding: 20px 28px;
+        text-align: center;
+        box-shadow: 0 8px 32px rgba(255, 107, 0, 0.35);
+      }
+      .flow-result-label {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.75);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 4px;
+      }
+      .flow-result-num {
+        font-family: "Poppins", sans-serif;
+        font-size: 2.4rem;
+        font-weight: 900;
+        color: white;
+      }
+
+      .model-bottom {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+      .model-left {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .model-card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        padding: 22px 24px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+      }
+      .mc-icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+      .mc-orange {
+        background: rgba(255, 107, 0, 0.2);
+      }
+      .mc-teal {
+        background: rgba(0, 198, 179, 0.2);
+      }
+      .mc-green {
+        background: rgba(34, 197, 94, 0.2);
+      }
+      .mc-text .mct-tag {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 4px;
+      }
+      .mc-text .mct-title {
+        color: white;
+        font-weight: 800;
+        font-size: 1.05rem;
+        margin-bottom: 4px;
+      }
+      .mc-text .mct-desc {
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 0.85rem;
+      }
+
+      .unit-econ {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 18px;
+        padding: 28px;
+      }
+      .ue-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: white;
+        font-weight: 800;
+        font-size: 1.05rem;
+        margin-bottom: 24px;
+      }
+      .ue-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .ue-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        padding: 20px;
+      }
+      .ue-label {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.45);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .ue-val {
+        font-family: "Poppins", sans-serif;
+        font-size: 2rem;
+        font-weight: 800;
+        color: white;
+      }
+      .ue-sub {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 4px;
+      }
+
+      /* DEMO VIDEO */
+      #demo {
+        background: var(--bg);
+      }
+      .demo-box {
+        background: var(--dark);
+        border-radius: 28px;
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 16/9;
+        max-width: 860px;
+        margin: 0 auto;
+        cursor: pointer;
+        box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
+      }
+      /* YOUTUBE EMBED PLACEHOLDER — link almashtiring */
+      .demo-box iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+      .demo-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(15, 34, 96, 0.85) 0%,
+          rgba(0, 0, 0, 0.7) 100%
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        transition: opacity 0.3s;
+      }
+      .demo-box.playing .demo-overlay {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .play-btn {
+        width: 80px;
+        height: 80px;
+        background: var(--orange);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        box-shadow: 0 10px 40px rgba(255, 107, 0, 0.5);
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        border: none;
+      }
+      .play-btn:hover {
+        transform: scale(1.08);
+        box-shadow: 0 14px 50px rgba(255, 107, 0, 0.6);
+      }
+      .demo-label {
+        color: white;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+      .demo-sub {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
+      }
+      /* YouTube real ID placeholder */
+      #yt-player {
+        display: none;
+      }
+
+      /* JAMOA */
+      #jamoa {
+        background: white;
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin-bottom: 40px;
+      }
+      .team-card {
+        background: var(--bg);
+        border-radius: 24px;
+        overflow: hidden;
+        transition: transform 0.25s, box-shadow 0.25s;
+        border: 1.5px solid rgba(0, 0, 0, 0.05);
+      }
+      .team-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 50px rgba(0, 0, 0, 0.1);
+      }
+      .team-img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        display: block;
+        background: linear-gradient(135deg, #e8ecf0, #d0d8e4);
+      }
+      .team-img-placeholder {
+        width: 100%;
+        aspect-ratio: 1;
+        background: linear-gradient(135deg, #dde4f0, #c8d4e8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        cursor: pointer;
+        transition: filter 0.2s;
+      }
+      .team-img-placeholder:hover {
+        filter: brightness(0.92);
+      }
+      .team-img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+        display: block;
+      }
+      .team-info {
+        padding: 24px;
+      }
+      .team-name {
+        font-weight: 800;
+        color: var(--dark);
+        font-size: 1.1rem;
+        margin-bottom: 4px;
+      }
+      .team-role {
+        font-weight: 600;
+        color: var(--orange);
+        font-size: 0.85rem;
+      }
+
+      .team-result {
+        background: var(--dark);
+        border-radius: 20px;
+        padding: 28px 36px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      .team-result-label {
+        font-weight: 800;
+        color: white;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .team-result-text {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 0.95rem;
+        line-height: 1.5;
+      }
+      .team-result-text .t {
+        color: var(--teal-light);
+        font-weight: 700;
+      }
+      .team-result-text .o {
+        color: var(--orange);
+        font-weight: 700;
+      }
+
+      /* CTA */
+      #cta {
+        background: linear-gradient(135deg, var(--orange) 0%, #e55a00 100%);
+        padding: 90px 5%;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      #cta::before {
+        content: "";
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 400px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.07);
+        border-radius: 50%;
+      }
+      #cta::after {
+        content: "";
+        position: absolute;
+        bottom: -80px;
+        left: -80px;
+        width: 300px;
+        height: 300px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+      }
+      #cta .section-title {
+        color: white;
+        max-width: 700px;
+        margin: 0 auto 16px;
+      }
+      #cta .section-desc {
+        color: rgba(255, 255, 255, 0.8);
+        max-width: 520px;
+        margin: 0 auto 40px;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 1;
+      }
+      .cta-white {
+        background: white;
+        color: var(--orange);
+        padding: 16px 36px;
+        border-radius: 50px;
+        font-size: 1.05rem;
+        font-weight: 800;
+        text-decoration: none;
+        transition: all 0.25s;
+        box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+      }
+      .cta-white:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.2);
+      }
+      .cta-border {
+        background: transparent;
+        color: white;
+        padding: 16px 36px;
+        border-radius: 50px;
+        font-size: 1.05rem;
+        font-weight: 800;
+        text-decoration: none;
+        border: 2.5px solid rgba(255, 255, 255, 0.6);
+        transition: all 0.25s;
+      }
+      .cta-border:hover {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: white;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--dark);
+        padding: 48px 5%;
+        color: rgba(255, 255, 255, 0.5);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: gap;
+        gap: 20px;
+      }
+      .footer-logo {
+        font-family: "Poppins", sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: white;
+      }
+      .footer-logo span {
+        color: var(--orange);
+      }
+      .footer-right {
+        text-align: right;
+        font-size: 0.85rem;
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes floatUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        nav ul {
+          display: none;
+        }
+        .hero-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero-btns {
+          justify-content: center;
+        }
+        .hero-stats {
+          justify-content: center;
+        }
+        .hero-visual {
+          margin-top: 20px;
+        }
+        .problem-grid,
+        .solution-grid,
+        .market-grid,
+        .model-bottom {
+          grid-template-columns: 1fr;
+        }
+        .team-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .circles-visual {
+          height: 280px;
+        }
+        .circle-outer {
+          width: 250px;
+          height: 250px;
+        }
+        .circle-mid {
+          width: 176px;
+          height: 176px;
+        }
+        .circle-inner {
+          width: 96px;
+          height: 96px;
+        }
+      }
+      @media (max-width: 560px) {
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+        .ue-grid {
+          grid-template-columns: 1fr;
+        }
+        .mrr-flow {
+          gap: 12px;
+        }
+        .flow-num {
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <div class="logo" style="display: flex; align-items: center; gap: 10px">
+        <img
+          src="images/logo.jpg"
+          alt="Qaqajon"
+          style="width: 40px; height: 40px; object-fit: contain"
+        />Qaqajon <span>AI</span>
+      </div>
+      <ul>
+        <li><a href="#muammo">Muammo</a></li>
+        <li><a href="#yechim">Yechim</a></li>
+        <li><a href="#bozor">Bozor</a></li>
+        <li><a href="#biznes">Biznes Model</a></li>
+        <li><a href="#jamoa">Jamoa</a></li>
+        <li><a href="#demo" class="nav-cta">Demo ko'rish ▶</a></li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-badge">
+            <img
+              src="images/logo.jpg"
+              style="
+                width: 22px;
+                height: 22px;
+                object-fit: contain;
+                border-radius: 6px;
+              "
+            />
+            O'zbekiston #1 EdTech AI Ilovasi
+          </div>
+          <h1>
+            Farzandingizning <span class="orange">ta'lim</span><br />
+            safari — <span class="teal">aqlli</span> bo'lsin
+          </h1>
+          <p class="hero-desc">
+            Qaqajon AI — O'zbek tilidagi ilk aqlli murabbiy. Bolaning nutqini
+            tinglab, xatolarni topib, rag'batlantirib boradi. 3–10 yoshli
+            bolalar uchun yaratilgan.
+          </p>
+          <div class="hero-btns">
+            <a href="#demo" class="btn-primary">▶ Demo Ko'rish</a>
+            <a href="#yechim" class="btn-secondary">📱 Ilovani Ko'rish</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <div class="stat-num">7M+</div>
+              <div class="stat-label">Umumiy bozor</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">$1/oy</div>
+              <div class="stat-label">Narxi</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">3–10</div>
+              <div class="stat-label">Yosh</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="phone-mockup">
+            <div
+              class="phone-screen"
+              style="padding: 0; border-radius: 28px; overflow: hidden"
+            >
+              <img
+                src="images/royhatdanotish.jpg"
+                style="
+                  width: 100%;
+                  height: 100%;
+                  object-fit: cover;
+                  border-radius: 28px;
+                  display: block;
+                "
+              />
+            </div>
+          </div>
+          <div class="floating-card fc1">
+            <span class="fc-icon">🏆</span>
+            <div>
+              <div>+50 ball!</div>
+              <div style="color: #999; font-size: 0.7rem; font-weight: 400">
+                Ingliz tili
+              </div>
+            </div>
+          </div>
+          <div class="floating-card fc2">
+            <span class="fc-icon">📊</span>
+            <div>
+              <div>4.5s so'zlash</div>
+              <div style="color: #999; font-size: 0.7rem; font-weight: 400">
+                Haftalik yutuq
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MUAMMO -->
+    <section id="muammo">
+      <div class="max-w">
+        <div class="section-tag">Muammo</div>
+        <h2 class="section-title">
+          Bolalar vaqtining <span class="orange">50%</span>ini<br />telefon
+          olmoqda
+        </h2>
+        <p class="section-desc">
+          Ijodiy fikrlash, diqqat va muloqot qilish qobiliyatlari tushib
+          bormoqda. O'zbekiston talaffuz bo'yicha global reytingda 104-o'rinda.
+        </p>
+
+        <div class="problem-grid reveal">
+          <div>
+            <div class="big-stat">
+              <div class="big-percent">50%</div>
+              <div class="big-percent-sub">
+                Bolalarning bo'sh vaqti — telefonda
+              </div>
+            </div>
+            <div class="global-stats">
+              <div class="gstat">
+                <div class="gstat-num">104↓</div>
+                <div class="gstat-label">Global talaffuz reytingi</div>
+              </div>
+              <div class="gstat">
+                <div class="gstat-num">123+</div>
+                <div class="gstat-label">Davlat ichida</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="problem-items">
+            <div class="problem-item">
+              <div class="problem-icon">🧠</div>
+              <div class="problem-text">
+                <h4>Ijodiy fikrlash pasaymoqda</h4>
+                <p>
+                  Passiv kontent iste'moli bolalar ongini rivojlantirishdan
+                  to'sib qo'ymoqda.
+                </p>
+              </div>
+            </div>
+            <div class="problem-item">
+              <div class="problem-icon">👁️</div>
+              <div class="problem-text">
+                <h4>Diqqat muddati qisqarmoqda</h4>
+                <p>
+                  Qisqa videolar bolalarda uzoq muddatli diqqatni
+                  shakllantirishga xalaqit bermoqda.
+                </p>
+              </div>
+            </div>
+            <div class="problem-item">
+              <div class="problem-icon">💬</div>
+              <div class="problem-text">
+                <h4>Muloqot ko'nikmalari zaiflashmoqda</h4>
+                <p>Og'zaki muloqot o'rniga ekran bilan "suhbat" kuchaymoqda.</p>
+              </div>
+            </div>
+            <div class="problem-item">
+              <div class="problem-icon">🔤</div>
+              <div class="problem-text">
+                <h4>Ingliz tili talaffuzi past</h4>
+                <p>
+                  O'zbekiston sof talaffuz bo'yicha juda past ko'rsatkichda
+                  qolmoqda.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- YECHIM -->
+    <section id="yechim">
+      <div class="max-w">
+        <div class="section-tag">Yechim</div>
+        <h2 class="section-title">
+          <span class="teal">Qaqajon AI</span> —<br />O'zbek tilidagi ilk aqlli
+          murabbiy
+        </h2>
+        <p class="section-desc">
+          Bolaning nutqini tinglab, xatolarni topib, oddiy tilda tushuntirib,
+          ballar va sovg'alar orqali o'qishga qiziqtiradi.
+        </p>
+
+        <div class="solution-grid reveal">
+          <div class="feature-cards">
+            <div class="feature-card">
+              <div class="feat-icon-wrap feat-orange">🎧</div>
+              <div class="feat-text">
+                <h3>Eshitadi</h3>
+                <p>
+                  Bolaning nutqini real vaqtda tinglab, so'zlarni aniq taniydi
+                  va tushunadi.
+                </p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feat-icon-wrap feat-teal">🔍</div>
+              <div class="feat-text">
+                <h3>Tahlil qiladi</h3>
+                <p>
+                  Xatolarni topadi va bolaga mos, oddiy tilda tushuntiradi.
+                  Ota-onaga batafsil hisobot yuboradi.
+                </p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feat-icon-wrap feat-blue">⭐</div>
+              <div class="feat-text">
+                <h3>Rag'batlantiradi</h3>
+                <p>
+                  Ballar, sovg'alar va yutuqlar orqali bolani o'qishga doimiy
+                  qiziqtirib turadi.
+                </p>
+              </div>
+            </div>
+            <div class="feature-card">
+              <div class="feat-icon-wrap feat-orange">📊</div>
+              <div class="feat-text">
+                <h3>Ota-ona nazorati</h3>
+                <p>
+                  Haftalik natijalar, kuchli va zaif tomonlar — barchasi
+                  Telegramga yuboriladi.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- MOCKUP RASM -->
+          <div
+            style="display: flex; align-items: center; justify-content: center"
+          >
+            <img
+              src="images/mocup.png"
+              alt="Qaqajon AI ilova"
+              style="width: 100%; border-radius: 16px; display: block"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOZOR HAJMI -->
+    <section id="bozor">
+      <div class="max-w">
+        <div class="section-tag">Bozor Hajmi</div>
+        <h2 class="section-title">
+          O'zbekistonda <span class="orange">7M+</span> potentsial
+        </h2>
+        <p class="section-desc">
+          Markaziy Osiyoning birinchi milliy EdTech AI ilovasi bo'lamiz.
+          "Digital Uzbekistan — 2030" dasturi bozorni tez o'stirmoqda.
+        </p>
+
+        <div class="market-grid reveal">
+          <div class="circles-visual">
+            <div class="circle-outer"></div>
+            <div class="circle-mid"></div>
+            <div class="circle-inner">
+              <div class="circle-text">
+                <div class="cnum">300–500k</div>
+                <div class="csub">Kutilayotgan<br />foydalanuvchi</div>
+              </div>
+            </div>
+            <div
+              class="outer-label"
+              style="top: 22px; right: 50%; transform: translateX(50%)"
+            >
+              7M+
+            </div>
+            <div
+              class="mid-label"
+              style="
+                top: 95px;
+                right: 50%;
+                transform: translateX(50%);
+                font-size: 1rem;
+              "
+            >
+              5.5–6M+
+            </div>
+          </div>
+
+          <div>
+            <div class="market-items">
+              <div class="market-item">
+                <div class="market-dot" style="background: var(--orange)"></div>
+                <div>
+                  <h4>Umumiy bozor — 7M+</h4>
+                  <p>
+                    O'zbekistonda 3–10 yoshdagi bolalar soni. Katta va o'sib
+                    boruvchi auditoriya.
+                  </p>
+                </div>
+              </div>
+              <div class="market-item">
+                <div class="market-dot" style="background: var(--blue)"></div>
+                <div>
+                  <h4>Potensial auditoriya — 5.5–6M+</h4>
+                  <p>
+                    Mobil aloqa qamrovi 92%, internet kirib borishi 89% —
+                    raqamli ta'limga tayyor.
+                  </p>
+                </div>
+              </div>
+              <div class="market-item">
+                <div class="market-dot" style="background: var(--teal)"></div>
+                <div>
+                  <h4>Kutilayotgan natija — 300–500k</h4>
+                  <p>
+                    Birinchi bosqichda qamrab olinadigan faol foydalanuvchilar.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="market-highlight">
+              <strong>"Digital Uzbekistan – 2030"</strong> dasturi doirasida
+              raqamli ta'lim bozori tez o'sib bormoqda. Biz Markaziy Osiyo
+              bo'yicha birinchi milliy EdTech AI ilova bo'lamiz!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIZNES MODEL -->
+    <section id="biznes">
+      <div class="max-w">
+        <div class="section-tag">Biznes Model</div>
+        <h2 class="section-title">
+          Freemium Obuna &amp;<br /><span class="teal">Unit Economics</span>
+        </h2>
+        <p class="section-desc">
+          Yagona, barqaror daromad manbai. Keng bepul baza — premium'ga oson
+          o'tish.
+        </p>
+
+        <div class="mrr-flow reveal">
+          <div class="flow-item">
+            <div class="flow-num">100k</div>
+            <div class="flow-label">Bepul baza</div>
+          </div>
+          <div class="flow-op">→</div>
+          <div class="flow-item">
+            <div class="flow-num blue-col">20k</div>
+            <div class="flow-label">Premium obunachi</div>
+          </div>
+          <div class="flow-op">×</div>
+          <div class="flow-item">
+            <div class="flow-num">$1</div>
+            <div class="flow-label">Oylik to'lov</div>
+          </div>
+          <div class="flow-op">=</div>
+          <div class="flow-result">
+            <div class="flow-result-label">MRR (Oylik tushum)</div>
+            <div class="flow-result-num">$20,000</div>
+          </div>
+        </div>
+
+        <div class="model-bottom reveal">
+          <div class="model-left">
+            <div class="model-card">
+              <div class="mc-icon mc-orange">👤</div>
+              <div class="mc-text">
+                <div class="mct-tag">1. Kim to'laydi?</div>
+                <div class="mct-title">Ota-onalar</div>
+                <div class="mct-desc">
+                  Farzandining rivojlanishiga e'tiborli, fidokor oila
+                  boshliqlari.
+                </div>
+              </div>
+            </div>
+            <div class="model-card">
+              <div class="mc-icon mc-teal">🛡️</div>
+              <div class="mc-text">
+                <div class="mct-tag">2. Nima uchun?</div>
+                <div class="mct-title">AI Murabbiy to'liq funksiyalari</div>
+                <div class="mct-desc">
+                  Cheksiz muloqot, chuqur tahliliy hisobotlar, ota-ona nazorati.
+                </div>
+              </div>
+            </div>
+            <div class="model-card">
+              <div class="mc-icon mc-green">📈</div>
+              <div class="mc-text">
+                <div class="mct-tag">3. Qancha to'laydi?</div>
+                <div class="mct-title">$1 / oy (Avto-obuna)</div>
+                <div class="mct-desc">
+                  Hamyonbop va massoviy bozorga mos narx. Bekor qilish oson.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="unit-econ">
+            <div class="ue-title">⚡ Unit Economics (Birlik Iqtisodiyoti)</div>
+            <div class="ue-grid">
+              <div class="ue-card">
+                <div class="ue-label">CAC (Mijoz jalb qilish)</div>
+                <div class="ue-val">$0.20</div>
+                <div class="ue-sub">Targeting va referal orqali</div>
+              </div>
+              <div class="ue-card">
+                <div class="ue-label">LTV (Umumiy foyda)</div>
+                <div class="ue-val">$8.00</div>
+                <div class="ue-sub">O'rtacha 8 oylik faollik</div>
+              </div>
+              <div
+                class="ue-card"
+                style="grid-column: 1/-1; background: rgba(0, 198, 179, 0.12)"
+              >
+                <div class="ue-label">LTV / CAC nisbati</div>
+                <div class="ue-val" style="color: var(--teal-light)">40x</div>
+                <div class="ue-sub">
+                  Har $1 sarfga $40 qaytim — sog'lom biznes
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEMO VIDEO -->
+    <section id="demo" style="background: var(--bg)">
+      <div class="max-w" style="text-align: center">
+        <div class="section-tag">Demo</div>
+        <h2 class="section-title">
+          Ilovani <span class="orange">jonli</span> ko'ring
+        </h2>
+        <p class="section-desc" style="margin: 0 auto 40px">
+          Qaqajon AI qanday ishlashini 2 daqiqalik demoda ko'ring.
+        </p>
+
+        <div class="demo-box" id="demoBox">
+          <iframe
+            id="ytIframe"
+            src="about:blank"
+            data-src="https://www.youtube.com/embed/xgEgCqb9nYo?autoplay=1&rel=0&modestbranding=1&playsinline=1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            style="
+              position: absolute;
+              inset: 0;
+              width: 100%;
+              height: 100%;
+              border: none;
+              display: none;
+              border-radius: 28px;
+              z-index: 3;
+            "
+          >
+          </iframe>
+          <div class="demo-overlay" id="demoOverlay">
+            <img
+              src="https://img.youtube.com/vi/xgEgCqb9nYo/maxresdefault.jpg"
+              onerror="this.src='https://img.youtube.com/vi/xgEgCqb9nYo/hqdefault.jpg'"
+              alt="Demo thumbnail"
+              style="
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                opacity: 0.4;
+                border-radius: 28px;
+              "
+            />
+            <div
+              style="
+                position: relative;
+                z-index: 2;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 16px;
+              "
+            >
+              <button class="play-btn" onclick="playDemo()" aria-label="Play">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="white">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </button>
+              <div class="demo-label">Qaqajon AI — Demo Video</div>
+              <div class="demo-sub">Bosing va ko'ring ▶</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- YouTube tugmalari -->
+        <div
+          style="
+            margin-top: 24px;
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+          "
+        >
+          <a
+            href="https://www.youtube.com/watch?v=xgEgCqb9nYo"
+            target="_blank"
+            rel="noopener"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              background: #ff0000;
+              color: white;
+              padding: 13px 28px;
+              border-radius: 50px;
+              font-weight: 700;
+              font-size: 0.95rem;
+              text-decoration: none;
+              box-shadow: 0 6px 20px rgba(255, 0, 0, 0.35);
+              transition: transform 0.2s;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform=''"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+              <path
+                d="M21.8 8s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.2 5 12 5 12 5s-4.2 0-7 .1c-.4.1-1.2.1-2 .9-.6.6-.8 2-.8 2S2 9.6 2 11.2v1.5c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.3.8C6.8 19 12 19 12 19s4.2 0 7-.2c.4-.1 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.5C22 9.6 21.8 8 21.8 8zM10 15V9l5.5 3-5.5 3z"
+              />
+            </svg>
+            YouTube&#39;da Ko&#39;rish
+          </a>
+          <a
+            href="https://youtube.com/shorts/xgEgCqb9nYo"
+            target="_blank"
+            rel="noopener"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 10px;
+              background: #111827;
+              color: white;
+              padding: 13px 28px;
+              border-radius: 50px;
+              font-weight: 700;
+              font-size: 0.95rem;
+              text-decoration: none;
+              border: 2px solid rgba(255, 255, 255, 0.15);
+              transition: transform 0.2s;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'"
+            onmouseout="this.style.transform=''"
+          >
+            📱 Shorts versiyasi
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- JAMOA -->
+    <section id="jamoa">
+      <div class="max-w">
+        <div class="section-tag">Bizning Jamoa</div>
+        <h2 class="section-title">
+          Loyihani muvaffaqiyatli biznesga<br />aylantiradigan
+          <span class="orange">mutaxassislar</span>
+        </h2>
+
+        <div class="team-grid reveal">
+          <div class="team-card">
+            <img class="team-img" src="images/azizbek.jpg" alt="Azizbek" />
+            <div class="team-info">
+              <div class="team-name">Azizbek Eshmuminov</div>
+              <div class="team-role">Proyekt menejeri</div>
+            </div>
+          </div>
+          <div class="team-card">
+            <img
+              class="team-img"
+              src="images/Ravshanbek.jpg"
+              alt="Ravshanbek"
+            />
+            <div class="team-info">
+              <div class="team-name">Ravshanbek Akbarov</div>
+              <div class="team-role">ML Engineer &amp; Dasturchi</div>
+            </div>
+          </div>
+          <div class="team-card">
+            <img class="team-img" src="images/shahzoda.jpg" alt="Shahzoda" />
+            <div class="team-info">
+              <div class="team-name">Shahzoda Hakimova</div>
+              <div class="team-role">Marketolog</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-result reveal">
+          <div class="team-result-label">Natija:</div>
+          <div class="team-result-text">
+            <span class="t">Kuchli texnik ekspertiza</span> va
+            <span class="o">bozorni tushunish</span> — g'oyani global biznesga
+            aylantirish garovi.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+      <div style="position: relative; z-index: 1">
+        <div
+          class="section-tag"
+          style="
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-color: rgba(255, 255, 255, 0.3);
+          "
+        >
+          Boshlash
+        </div>
+        <h2 class="section-title">
+          Farzandingizning kelajagi<br />bugundan boshlanadi
+        </h2>
+        <p class="section-desc">
+          Qaqajon AI bilan ingliz tilini o'ynab, sevib o'rganing. Bepul sinab
+          ko'ring!
+        </p>
+        <div class="cta-btns">
+          <a href="#demo" class="cta-white">▶ Demo Ko'rish</a>
+          <a
+            href="https://canva.link/k9hen1e7fbedbsj"
+            target="_blank"
+            class="cta-border"
+            >📊 Prezentatsiyani Ko'rish</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div
+        class="footer-logo"
+        style="display: flex; align-items: center; gap: 10px"
+      >
+        <img
+          src="images/logo.jpg"
+          alt="Logo"
+          style="width: 36px; height: 36px; object-fit: contain"
+        />Qaqajon <span>AI</span>
+      </div>
+      <div class="footer-right">
+        © 2025 Qaqajon AI. Barcha huquqlar himoyalangan.<br />
+        O'zbekiston · EdTech · AI
+      </div>
+    </footer>
+
+    <script>
+      // Team photo loader
+      function loadImg(input, placeholderId) {
+        if (!input.files || !input.files[0]) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const ph = document.getElementById(placeholderId);
+          ph.innerHTML = "";
+          ph.style.padding = "0";
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          img.style.cssText =
+            "width:100%;height:100%;object-fit:cover;border-radius:0;display:block;";
+          ph.appendChild(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+
+      // App screenshot loader
+      function loadShot(input, shotId) {
+        if (!input.files || !input.files[0]) return;
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          const shot = document.getElementById(shotId);
+          shot.innerHTML = "";
+          const img = document.createElement("img");
+          img.src = e.target.result;
+          shot.appendChild(img);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      reveals.forEach((el) => observer.observe(el));
+
+      // Demo video play
+      function playDemo() {
+        const iframe = document.getElementById("ytIframe");
+        const overlay = document.getElementById("demoOverlay");
+        const src = iframe.getAttribute("data-src");
+        iframe.src = src;
+        iframe.style.display = "block";
+        overlay.style.display = "none";
+      }
+
+      // Nav active scroll
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll("nav ul a");
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((s) => {
+          if (window.scrollY >= s.offsetTop - 80) current = s.id;
+        });
+        navLinks.forEach((a) => {
+          a.style.color =
+            a.getAttribute("href") === "#" + current ? "var(--orange)" : "";
+        });
+      });
+    </script>
+  </body>
+</html>
